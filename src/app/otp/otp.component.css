@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap'); 
 
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .title-text {
   font-size: 3.5rem;
   font-family: 'Concert One', cursive; 
@@ -11,20 +19,14 @@
   margin-top: 2rem;
 }
 
-.forgot-wrapper {
-  height: 70vh;
+.otp-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
-.head {
-  font-family: 'Concert One', cursive;
-  font-size: 40px; 
-  color: white;
-}
-
-.forgot-box {
+.otp-card {
   width: 90%;
   max-width: 350px;
   background: rgba(255, 255, 255, 0.1);
@@ -38,17 +40,34 @@
   text-align: center;
 }
 
-.forgot-box input[type="email"],
-.forgot-box input[type="UserName"] {
-  width: 100%;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
-  border: none;
-  border-bottom: 1px solid white;
-  background: transparent;
-  color: rgb(0, 0, 0); 
-  outline: none;
+h2 {
+    font-family: 'Concert One', cursive;
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: #ffffff;
+}
+
+p {
   font-family: 'Concert One', cursive;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.otp-inputs input {
+  font-family: 'Concert One', cursive;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button[type="submit"] {
@@ -73,16 +92,4 @@ button[type="submit"]:hover {
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-.register-link {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  font-family: 'Concert One', cursive;
-}
-
-.register-link a {
-  color: black;
-  text-decoration: underline;
-  font-family: 'Concert One', cursive;
 }

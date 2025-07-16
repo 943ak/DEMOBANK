@@ -1,0 +1,18 @@
+<header>
+  <div class="title-text">DemoBank</div>
+</header>
+<div class="otp-container">
+  <div class="otp-card">
+    <h2><i class="material-icons">vpn_key</i> OTP Verification</h2>
+    <p>Enter the 4-digit OTP sent to your mobile number / Email.</p>
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+      <div class="otp-inputs">
+        <input #otpInput type="text" formControlName="otp1" maxlength="1" (keyup)="onKeyUp($event, 0)" pattern="\d*" inputmode="numeric" />
+        <input #otpInput type="text" formControlName="otp2" maxlength="1" (keyup)="onKeyUp($event, 1)" pattern="\d*" inputmode="numeric" />
+        <input #otpInput type="text" formControlName="otp3" maxlength="1" (keyup)="onKeyUp($event, 2)" pattern="\d*" inputmode="numeric" />
+        <input #otpInput type="text" formControlName="otp4" maxlength="1" (keyup)="onKeyUp($event, 3)" pattern="\d*" inputmode="numeric" />
+      </div>
+      <button type="submit" [disabled]="!otpForm.valid">Verify OTP</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<header class="new-header">
+  <div class="title-text">DemoBank</div>
+</header>
+
+<div class="security-questions-wrapper">
+  <div class="security-questions-container">
+    <div class="security-questions-header">
+      <h2 class="head"><i class="material-icons">security</i> Security Questions</h2>
+      <div class="progress-section">
+        <p>
+          Min {{ minQuestionsToAnswer }} Questions To Be Answered
+          <span *ngIf="canProceed" class="checkmark"><i class="material-icons">check_circle</i></span>
+        </p>
+        <div class="progress-bar-container">
+          <div class="progress-bar" [style.width.%]="(answeredQuestionsCount / questions.length) * 100"></div>
+        </div>
+        <p>
+          {{ answeredQuestionsCount }} / {{ questions.length }} answered
+          <span *ngIf="answeredQuestionsCount === questions.length" class="checkmark"><i class="material-icons">check_circle</i></span>
+        </p>
+      </div>
+    </div>
+
+    <div class="questions-list">
+      <div *ngFor="let question of questions" class="question-panel">
+        <div class="question-header" (click)="toggleQuestion(question)">
+          <span *ngIf="question.answered" class="checkmark animated"><i class="material-icons">check_circle</i></span>
+          <span class="question-text">{{ question.question }}</span>
+          <span class="arrow" [class.expanded]="question.expanded"><i class="material-icons">{{ question.expanded ? 'expand_less' : 'expand_more' }}</i></span>
+        </div>
+        <div [class.expanded]="question.expanded" class="question-body">
+          <input type="text" [(ngModel)]="question.answer" (ngModelChange)="onAnswerChange(question)" placeholder="Your answer here">
+        </div>
+      </div>
+    </div>
+
+    <div class="navigation-buttons">
+      <button class="back-button" (click)="goBack()">Back</button>
+      <button class="next-button" [disabled]="!canProceed" (click)="goNext()">Next</button>
+    </div>
+  </div>
+</div>

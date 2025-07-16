@@ -1,0 +1,83 @@
+<header class="dashboard-header">
+  <div class="title-text">DemoBank</div>
+  <div class="header-right">
+    <div class="user-profile" (click)="toggleDropdown()">
+      <img src="assets/user-placeholder.jpg" alt="User Photo" class="user-photo">
+      <span class="user-name">{{ userName }}</span>
+      <span class="dropdown-arrow" [class.expanded]="isDropdownOpen">
+        <i class="material-icons">{{ isDropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</i>
+      </span>
+    </div>
+    <div class="dropdown-menu" [class.open]="isDropdownOpen">
+      <div class="dropdown-profile-header">
+        <div class="profile-photo-wrapper">
+          <img src="assets/user-placeholder.jpg" alt="User Photo" class="large-user-photo">
+        </div>
+        <span class="large-user-name">{{ userName }}</span>
+      </div>
+      <a (click)="navigateTo('/profile')" class="dropdown-item">
+        <i class="material-icons">person</i> My Profile
+      </a>
+      <a (click)="navigateTo('/settings')" class="dropdown-item">
+        <i class="material-icons">settings</i> Settings
+      </a>
+      <button (click)="logout()" class="dropdown-item logout-button">
+        <i class="material-icons">logout</i> Logout
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="dashboard-wrapper">
+  <div class="dashboard-container">
+    <div class="main-content">
+      <div class="account-summary-section">
+        <h3>Account Summary</h3>
+        <div class="account-cards">
+          <div *ngFor="let account of accounts" class="account-card">
+            <h4>{{ account.name }}</h4>
+            <p class="balance">{{ account.balance | currency }}</p>
+            <p class="account-number">{{ account.number }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="recent-transactions-section">
+        <h3>Recent Transactions</h3>
+        <ul class="transaction-list">
+          <li *ngFor="let transaction of transactions">
+            <span class="transaction-description">{{ transaction.description }}</span>
+            <span class="transaction-amount" [ngStyle]="{'color': getAmountColor(transaction.amount)}">
+              {{ transaction.amount | currency }}
+            </span>
+            <span class="transaction-date">{{ transaction.date | date: 'mediumDate' }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="right-sidebar">
+      <div class="quick-actions-section">
+        <h3>Quick Actions</h3>
+        <div class="quick-action-buttons">
+          <button class="action-button">
+            <i class="material-icons">swap_horiz</i> Transfer Money
+          </button>
+          <button class="action-button">
+            <i class="material-icons">receipt</i> Pay Bills
+          </button>
+          <button class="action-button">
+            <i class="material-icons">account_balance</i> Deposit Check
+          </button>
+        </div>
+      </div>
+
+      <div class="spending-visualization-section">
+        <h3>Spending Summary</h3>
+        <div class="chart-placeholder">
+          <p>A chart visualizing your spending will be here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

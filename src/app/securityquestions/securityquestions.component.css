@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+.new-header {
+  position: fixed; /* Use fixed to keep it at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: linear-gradient(to left, #003366, #001A33); /* Darker blue gradient from right to left */
+  padding: 0.8rem 1.5rem; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.new-header .title-text {
+  font-size: 2.2rem; /* Slightly reduced font size */
+  font-family: 'Concert One', cursive;
+  font-weight: 400;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  margin: 0;
+}
+
+.security-questions-wrapper {
+  display: flex;
+  align-items: flex-start; /* Align to top */
+  justify-content: center;
+  min-height: 100vh;
+  padding: 8rem 0 2rem; /* Adjusted padding for fixed header and more vertical space */
+  background-color: white; /* Solid white background */
+}
+
+.security-questions-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
+  width: 100%;
+  max-width: 850px; /* Increased max-width to fill more space */
+  padding: 0 2rem; /* Increased horizontal padding */
+}
+
+.security-questions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem; /* Increased margin for better separation */
+  padding-bottom: 1rem; /* Increased padding */
+  border-bottom: 1px solid #eee;
+  width: 100%; /* Ensure it takes full width */
+}
+
+.security-questions-header .head {
+  font-family: 'Concert One', cursive;
+  font-size: 1.8rem; /* Slightly reduced font size */
+  color: #333;
+  margin: 0;
+}
+
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Concert One', cursive;
+  color: #555;
+  font-size: 0.85rem; /* Slightly reduced font size */
+}
+
+.progress-bar-container {
+  width: 90%; /* Adjusted width to be responsive */
+  max-width: 150px; /* Keep a max-width for larger screens */
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 3px; /* Reduced margin */
+  border: 1px solid black;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.questions-list {
+  flex: 1;
+  width: 100%; /* Ensure it takes full width */
+  margin-bottom: 1.5rem; /* Added margin to separate from buttons */
+}
+
+.question-panel {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem; /* Increased margin for better separation */
+  overflow: hidden;
+}
+
+.question-header {
+  padding: 1rem 1.2rem; /* Increased padding */
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Align items vertically */
+  font-family: 'Concert One', cursive;
+  font-size: 1.1rem; /* Slightly increased font size */
+  color: #333;
+  background: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.question-header:hover {
+  background: #e5e5e5;
+}
+
+.question-header .checkmark {
+  color: #4CAF50;
+  font-size: 1.2rem; /* Increased font size */
+  margin-right: 10px; /* Increased spacing for tick mark */
+  font-weight: bold; /* Make the tick mark bolder */
+}
+
+.question-header .question-text {
+  flex-grow: 1;
+}
+
+.question-header .arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem; /* Increased font size */
+  margin-left: 10px; /* Spacing for arrow */
+}
+
+.question-header .arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.question-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  padding: 0 1.2rem; /* Start with 0 padding vertically */
+}
+
+.question-body.expanded {
+  max-height: 500px; /* Adjust as needed to be larger than content */
+  padding: 1rem 1.2rem; /* Restore padding when expanded */
+}
+
+.question-header .checkmark {
+  color: #4CAF50;
+  font-size: 1.2rem; /* Increased font size */
+  margin-right: 10px; /* Increased spacing for tick mark */
+  font-weight: bold; /* Make the tick mark bolder */
+  transform: scale(0); /* Start hidden */
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.question-header .checkmark.animated {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.question-body input {
+  width: calc(100% - 24px); /* Adjusted width for padding */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #333;
+  font-family: 'Concert One', cursive;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem; /* Increased margin */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.navigation-buttons button {
+  padding: 0.8rem 1.5rem; /* Increased padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Concert One', cursive;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1rem; /* Increased font size */
+}
+
+.back-button {
+  background-color: #cccccc;
+  color: #333;
+}
+
+.back-button:hover {
+  background-color: #b3b3b3;
+  transform: scale(1.05);
+}
+
+.next-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.next-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.next-button:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .new-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .new-header .title-text {
+    font-size: 1.8rem;
+  }
+
+  .security-questions-container {
+    padding: 0 1rem;
+  }
+
+  .security-questions-header .head {
+    font-size: 1.5rem;
+  }
+
+  .progress-section {
+    font-size: 0.75rem;
+  }
+
+  .question-header {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+
+  .question-body {
+    padding: 0.8rem 1rem;
+  }
+
+  .question-body input {
+    width: calc(100% - 20px);
+  }
+
+  .navigation-buttons button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
