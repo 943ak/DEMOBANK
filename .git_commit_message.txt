@@ -1,0 +1,16 @@
+feat: Implement core application features and UI
+
+This commit introduces the foundational structure and key components for the DemoBank application.
+
+- Added new components for:
+    - Dashboard
+    - Login
+    - OTP (One-Time Password)
+    - Reset Password
+    - Security Questions
+    - Forgot Password
+- Updated `app.module.ts` for module integration.
+- Modified `app.component.css`, `app.component.html`, `app.component.ts`, `app.config.ts`, and `app.routes.ts` to support new features and routing.
+- Included new assets (`user-placeholder.jpg`, `Text.svg`, `eye.ico`).
+- Updated `package.json` and `package-lock.json` with new dependencies.
+- Adjusted `src/index.html` and `src/styles.css` for overall application styling and structure.

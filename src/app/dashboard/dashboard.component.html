@@ -4,80 +4,110 @@
     <div class="user-profile" (click)="toggleDropdown()">
       <img src="assets/user-placeholder.jpg" alt="User Photo" class="user-photo">
       <span class="user-name">{{ userName }}</span>
-      <span class="dropdown-arrow" [class.expanded]="isDropdownOpen">
-        <i class="material-icons">{{ isDropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</i>
-      </span>
+      <i class="material-icons dropdown-arrow">{{ isDropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</i>
     </div>
     <div class="dropdown-menu" [class.open]="isDropdownOpen">
-      <div class="dropdown-profile-header">
-        <div class="profile-photo-wrapper">
-          <img src="assets/user-placeholder.jpg" alt="User Photo" class="large-user-photo">
-        </div>
-        <span class="large-user-name">{{ userName }}</span>
-      </div>
-      <a (click)="navigateTo('/profile')" class="dropdown-item">
-        <i class="material-icons">person</i> My Profile
-      </a>
-      <a (click)="navigateTo('/settings')" class="dropdown-item">
-        <i class="material-icons">settings</i> Settings
-      </a>
-      <button (click)="logout()" class="dropdown-item logout-button">
-        <i class="material-icons">logout</i> Logout
-      </button>
     </div>
   </div>
 </header>
 
+<!-- Main Dashboard Wrapper -->
 <div class="dashboard-wrapper">
   <div class="dashboard-container">
-    <div class="main-content">
-      <div class="account-summary-section">
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Account Summary -->
+      <section class="dashboard-card account-summary-section">
         <h3>Account Summary</h3>
         <div class="account-cards">
           <div *ngFor="let account of accounts" class="account-card">
-            <h4>{{ account.name }}</h4>
+            <div class="account-card-header">
+              <i class="material-icons account-icon">{{ account.icon }}</i>
+              <h4>{{ account.name }}</h4>
+            </div>
             <p class="balance">{{ account.balance | currency }}</p>
             <p class="account-number">{{ account.number }}</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="recent-transactions-section">
+      <!-- Income vs. Expense Trend -->
+      <section class="dashboard-card">
+        <h3>Cash Flow Trend</h3>
+        <div class="chart-container large">
+          <canvas id="income-expense-chart"></canvas>
+        </div>
+      </section>
+
+      <!-- Recent Transactions -->
+      <section class="dashboard-card recent-transactions-section">
         <h3>Recent Transactions</h3>
         <ul class="transaction-list">
           <li *ngFor="let transaction of transactions">
-            <span class="transaction-description">{{ transaction.description }}</span>
+            <div class="transaction-details">
+              <i class="material-icons category-icon">{{ getCategoryIcon(transaction.category) }}</i>
+              <div>
+                <span class="transaction-description">{{ transaction.description }}</span>
+                <span class="transaction-date">{{ transaction.date | date: 'mediumDate' }}</span>
+              </div>
+            </div>
             <span class="transaction-amount" [ngStyle]="{'color': getAmountColor(transaction.amount)}">
               {{ transaction.amount | currency }}
             </span>
-            <span class="transaction-date">{{ transaction.date | date: 'mediumDate' }}</span>
           </li>
         </ul>
-      </div>
-    </div>
+      </section>
 
-    <div class="right-sidebar">
-      <div class="quick-actions-section">
-        <h3>Quick Actions</h3>
-        <div class="quick-action-buttons">
-          <button class="action-button">
-            <i class="material-icons">swap_horiz</i> Transfer Money
-          </button>
-          <button class="action-button">
-            <i class="material-icons">receipt</i> Pay Bills
-          </button>
-          <button class="action-button">
-            <i class="material-icons">account_balance</i> Deposit Check
-          </button>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar">
+
+      <!-- Notifications -->
+      <section class="notifications-section">
+        <div *ngFor="let notification of notifications" class="notification-card" [ngClass]="'notification-' + notification.type">
+          <p>{{ notification.message }}</p>
+          <button (click)="dismissNotification(notification.id)" class="dismiss-button">&times;</button>
         </div>
-      </div>
+      </section>
 
-      <div class="spending-visualization-section">
+      <!-- Spending Summary Chart -->
+      <section class="dashboard-card">
         <h3>Spending Summary</h3>
-        <div class="chart-placeholder">
-          <p>A chart visualizing your spending will be here.</p>
+        <div class="chart-container">
+          <canvas id="spending-chart"></canvas>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <!-- Financial Goals -->
+      <section class="dashboard-card" *ngIf="financialGoals.length > 0">
+        <h3>Financial Goals</h3>
+        <div *ngFor="let goal of financialGoals" class="goal-tracker">
+          <div class="goal-header">
+            <span>{{ goal.name }}</span>
+            <span>{{ goal.currentAmount | currency }} / {{ goal.targetAmount | currency }}</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar" [style.width.%]="goal.progress"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Upcoming Bills -->
+      <section class="dashboard-card">
+        <h3>Upcoming Bills</h3>
+        <ul class="bill-list">
+          <li *ngFor="let bill of upcomingBills">
+            <span>{{ bill.name }}</span>
+            <span class="bill-due-date">{{ bill.dueDate }}</span>
+            <span class="bill-amount">{{ bill.amount | currency }}</span>
+          </li>
+        </ul>
+      </section>
+
+    </aside>
+
   </div>
 </div>

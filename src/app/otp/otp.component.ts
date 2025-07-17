@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AnimatedBackgroundComponent } from "../animated-background/animated-background.component";
 
 @Component({
   selector: 'app-otp',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AnimatedBackgroundComponent],
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.css']
 })

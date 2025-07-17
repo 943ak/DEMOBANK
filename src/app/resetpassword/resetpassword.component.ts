@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnimatedBackgroundComponent } from "../animated-background/animated-background.component";
 
 @Component({
   selector: 'app-resetpassword',
-  imports: [FormsModule],
+  imports: [FormsModule, AnimatedBackgroundComponent],
   templateUrl: './resetpassword.component.html',
   styleUrl: './resetpassword.component.css'
 })

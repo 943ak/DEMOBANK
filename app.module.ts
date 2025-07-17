@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from './src/app/forgot-password/forgot-passwo
 import { OTPComponent } from './src/app/otp/otp.component';
 import { ResetpasswordComponent } from './src/app/resetpassword/resetpassword.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { AnimatedBackgroundComponent } from './src/app/animated-background/animated-background.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { BrowserModule } from '@angular/platform-browser';
     LoginComponent,
     ForgotPasswordComponent,
     OTPComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    AnimatedBackgroundComponent
   ]
 })
 export class AppModule { }
