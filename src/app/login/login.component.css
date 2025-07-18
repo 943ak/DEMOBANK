@@ -127,3 +127,31 @@ button[type="submit"]:hover {
   text-decoration: underline;
   font-family: 'Concert One', cursive; 
 }
+
+@media (max-width: 768px) {
+  .title-text {
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .login-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-text {
+    font-size: 2rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  .login-box {
+    padding: 1rem;
+  }
+
+  .head {
+    font-size: 30px;
+  }
+}

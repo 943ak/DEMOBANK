@@ -1,0 +1,38 @@
+<div class="dock-panel" (mouseleave)="onMouseLeave()">
+  <div
+    *ngFor="let app of dockApps"
+    class="dock-outer"
+    (mouseenter)="onMouseEnter(app.name)"
+  >
+    <div
+      class="dock-item"
+      #item
+      [style.width.px]="getItemSize(item, app.name)"
+      [style.height.px]="getItemSize(item, app.name)"
+      (click)="app.name === 'Transactions' ? toggleTransactions() : null"
+    >
+      <div class="dock-icon">
+        <i class="material-icons">{{ app.icon }}</i>
+      </div>
+    </div>
+    <span class="dock-label" *ngIf="hoveredItem === app.name">{{ app.name }}</span>
+  </div>
+</div>
+
+<div *ngIf="showTransactions" class="transactions-panel">
+  <h3>Recent Transactions</h3>
+  <ul class="transaction-list">
+    <li *ngFor="let transaction of transactions" class="transaction-item" (mouseenter)="onMouseEnterTransaction($event, transaction)" (mouseleave)="onMouseLeaveTransaction($event)">
+      <div class="transaction-details">
+        <i class="material-icons category-icon">{{ getCategoryIcon(transaction.category) }}</i>
+        <div>
+          <span class="transaction-description">{{ transaction.description }}</span>
+          <span class="transaction-date">{{ transaction.date | date: 'mediumDate' }}</span>
+        </div>
+      </div>
+      <span class="transaction-amount" [ngStyle]="{'color': getAmountColor(transaction.amount)}">
+        {{ transaction.amount | currency }}
+      </span>
+    </li>
+  </ul>
+</div>

@@ -3,16 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@500;600&display=swap');
 
 :root {
-  --primary-color: #0052cc;
-  --secondary-color: #36A2EB;
-  --background-color: #f4f7fc;
-  --card-background: #ffffff;
-  --text-color: #333;
-  --text-muted: #6c757d;
-  --border-color: #e0e7ff;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
+  --primary-color: var(--primary-color);
+  --secondary-color: var(--secondary-color);
+  --background-color: var(--background-color);
+  --card-background: var(--card-background);
+  --text-color: var(--text-color);
+  --text-muted: var(--text-muted);
+  --border-color: var(--border-color);
+  --success-color: var(--success-color);
+  --warning-color: var(--warning-color);
+  --danger-color: var(--danger-color);
   --font-family: 'Roboto', sans-serif;
   --header-font: 'Poppins', sans-serif;
 }
@@ -35,7 +35,7 @@
 .dashboard-header .title-text {
   font-size: 2rem;
   font-family: 'Concert One', cursive;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .header-right {
@@ -54,7 +54,7 @@
 }
 
 .user-profile:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--border-color);
 }
 
 .user-photo {
@@ -63,34 +63,33 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--text-color);
 }
 
 .user-name {
-  color: #ffffff;
+  color: var(--text-color);
   font-family: 'Concert One', cursive;
   font-size: 1.1rem;
   margin-right: 8px;
 }
 
 .dropdown-arrow {
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #ffffff;
+  background-color: var(--card-background);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   min-width: 250px;
   z-index: 100;
-  color: #333;
+  color: var(--text-color);
   font-family: 'Concert One', cursive;
   max-height: 0;
-  overflow: hidden;
   opacity: 0;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
@@ -105,7 +104,7 @@
   align-items: center;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .profile-photo-wrapper {
@@ -117,20 +116,20 @@
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #003366;
+  border: 3px solid var(--primary-color);
 }
 
 .large-user-name {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #003366;
+  color: var(--secondary-color);
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
   padding: 0.8rem 1rem;
-  color: #333;
+  color: var(--text-color);
   text-decoration: none;
   transition: background-color 0.2s ease;
   border-radius: 4px;
@@ -140,15 +139,16 @@
 
 .dropdown-item .material-icons {
   margin-right: 10px;
+  color: var(--text-muted);
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0;
+  background-color: var(--border-color);
 }
 
 .logout-button {
   width: 100%;
-  background-color: #f44336;
+  background-color: var(--danger-color);
   color: white;
   border: none;
 }
@@ -162,6 +162,7 @@
   padding-top: 80px; /* Adjust for fixed header */
   background-color: var(--background-color);
   font-family: var(--font-family);
+  color: var(--text-color);
 }
 .dashboard-container {
   display: grid;
@@ -182,20 +183,22 @@
   background-color: var(--card-background);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .dashboard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .dashboard-card h3 {
   font-family: var(--header-font);
   font-size: 1.25rem;
-  color: var(--primary-color);
+  color: var(--text-color);
   margin-top: 0;
   margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
 }
 
 /* --- Account Summary --- */
@@ -205,7 +208,7 @@
   gap: 1.5rem;
 }
 .account-card {
-  background: linear-gradient(135deg, #e0e7ff, #ffffff);
+  background: linear-gradient(135deg, var(--border-color), var(--card-background));
   padding: 1.5rem;
   border-radius: 10px;
   border: 1px solid var(--border-color);
@@ -214,11 +217,12 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 .account-card-header h4 {
   margin: 0;
   font-size: 1.1rem;
+  color: var(--text-color);
 }
 .account-card .balance {
   font-size: 2rem;
@@ -251,14 +255,18 @@
   gap: 1rem;
 }
 .category-icon {
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 50%;
-  background-color: #f0f4ff;
-  color: var(--primary-color);
+  background-color: var(--border-color);
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .transaction-description {
   font-weight: 500;
   display: block;
+  color: var(--text-color);
 }
 .transaction-date {
   font-size: 0.85rem;
@@ -289,9 +297,11 @@
   padding: 1rem 1.5rem;
   border-radius: 8px;
   border-left: 5px solid;
+  color: var(--text-color);
+  overflow: hidden; /* For slide-in/out animation */
 }
-.notification-success { background-color: #e9f7ef; border-color: var(--success-color); }
-.notification-warning { background-color: #fff8e1; border-color: var(--warning-color); }
+.notification-success { background-color: rgba(76, 175, 80, 0.2); border-color: var(--success-color); }
+.notification-warning { background-color: rgba(255, 193, 7, 0.2); border-color: var(--warning-color); }
 .notification-card p { margin: 0; }
 .dismiss-button {
   position: absolute;
@@ -315,7 +325,7 @@
 .progress-bar-container {
   width: 100%;
   height: 10px;
-  background-color: #e0e7ff;
+  background-color: var(--border-color);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -324,6 +334,26 @@
   background-color: var(--secondary-color);
   border-radius: 5px;
   transition: width 0.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* --- Upcoming Bills --- */
@@ -339,7 +369,136 @@
   align-items: center;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border-color);
+  position: relative; /* For absolute positioning of icon */
+  overflow: hidden; /* Hide initially off-screen icon */
+  border-left: 1px solid transparent; /* Initial transparent border for animation */
+  transition: border-left-color 0.3s ease, border-left-width 0.3s ease;
 }
 .bill-list li:last-child { border-bottom: none; }
 .bill-due-date { color: var(--text-muted); font-size: 0.9rem; }
 .bill-amount { font-weight: 600; }
+
+.bill-reminder-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px); /* Initially off-screen */
+  opacity: 0;
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}
+
+/* --- Floating Action Button (FAB) --- */
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.fab-button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.fab-button:hover {
+  transform: scale(1.1);
+}
+
+.fab-menu {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.fab-menu.open {
+  max-height: 200px; /* Adjust based on content */
+  opacity: 1;
+}
+
+.fab-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.fab-menu-item .material-icons {
+  margin-right: 10px;
+  color: var(--text-muted);
+}
+
+.fab-menu-item:hover {
+  background-color: var(--border-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header .title-text {
+    font-size: 1.5rem;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 1rem;
+  }
+
+  .account-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .account-card .balance {
+    font-size: 1.8rem;
+  }
+
+  .transaction-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .transaction-amount {
+    align-self: flex-end;
+  }
+
+  .bill-list li {
+    grid-template-columns: 1fr auto;
+  }
+}

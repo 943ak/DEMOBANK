@@ -27,7 +27,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 8rem 0 2rem; /* Adjusted padding for fixed header and more vertical space */
-  background-color: white; /* Solid white background */
+  background-color: var(--background-color);
 }
 
 .security-questions-container {
@@ -45,14 +45,14 @@
   align-items: center;
   margin-bottom: 1.5rem; /* Increased margin for better separation */
   padding-bottom: 1rem; /* Increased padding */
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   width: 100%; /* Ensure it takes full width */
 }
 
 .security-questions-header .head {
   font-family: 'Concert One', cursive;
   font-size: 1.8rem; /* Slightly reduced font size */
-  color: #333;
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -61,7 +61,7 @@
   flex-direction: column;
   align-items: flex-end;
   font-family: 'Concert One', cursive;
-  color: #555;
+  color: var(--text-muted);
   font-size: 0.85rem; /* Slightly reduced font size */
 }
 
@@ -69,11 +69,11 @@
   width: 90%; /* Adjusted width to be responsive */
   max-width: 150px; /* Keep a max-width for larger screens */
   height: 8px;
-  background-color: #e0e0e0;
+  background-color: var(--border-color);
   border-radius: 5px;
   overflow: hidden;
   margin-top: 3px; /* Reduced margin */
-  border: 1px solid black;
+  border: 1px solid var(--text-muted);
 }
 
 .progress-bar {
@@ -83,6 +83,10 @@
   transition: width 0.3s ease-in-out;
 }
 
+.checkmark {
+  color: #28a745; /* A nice, visible green */
+}
+
 .questions-list {
   flex: 1;
   width: 100%; /* Ensure it takes full width */
@@ -90,8 +94,8 @@
 }
 
 .question-panel {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   margin-bottom: 1rem; /* Increased margin for better separation */
   overflow: hidden;
@@ -104,13 +108,13 @@
   align-items: center; /* Align items vertically */
   font-family: 'Concert One', cursive;
   font-size: 1.1rem; /* Slightly increased font size */
-  color: #333;
-  background: #f0f0f0;
+  color: var(--text-color);
+  background: var(--border-color);
   transition: background-color 0.2s ease;
 }
 
 .question-header:hover {
-  background: #e5e5e5;
+  background: #383838;
 }
 
 .question-header .checkmark {
@@ -138,8 +142,8 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-  background: #ffffff;
-  border-top: 1px solid #eee;
+  background: var(--card-background);
+  border-top: 1px solid var(--border-color);
   padding: 0 1.2rem; /* Start with 0 padding vertically */
 }
 
@@ -166,10 +170,10 @@
 .question-body input {
   width: calc(100% - 24px); /* Adjusted width for padding */
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--text-muted);
   border-radius: 4px;
-  background-color: #ffffff;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-family: 'Concert One', cursive;
 }
 
@@ -192,29 +196,26 @@
 }
 
 .back-button {
-  background-color: #cccccc;
-  color: #333;
+  background-color: var(--text-muted);
+  color: var(--background-color);
 }
 
 .back-button:hover {
-  background-color: #b3b3b3;
-  transform: scale(1.05);
+  background-color: #666;
 }
 
 .next-button {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
 }
 
 .next-button:hover:not(:disabled) {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  background-color: #58b3f0;
 }
 
 .next-button:disabled {
-  background-color: #e0e0e0;
-  color: #a0a0a0;
-  cursor: not-allowed;
+  background-color: var(--border-color);
+  color: var(--text-muted);
 }
 
 @media (max-width: 768px) {

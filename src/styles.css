@@ -1,4 +1,21 @@
+@import './dark-theme.css';
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, var(--background-color), var(--card-background), var(--background-color));
+    background-size: 400% 400%;
+    animation: gradientPulse 15s ease infinite;
+}
+
+@keyframes gradientPulse {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

@@ -1,12 +1,26 @@
 <header class="dashboard-header">
-  <div class="title-text">DemoBank</div>
+  <div class="title-text"><span #scrambleText></span></div>
   <div class="header-right">
-    <div class="user-profile" (click)="toggleDropdown()">
+    <div class="user-profile" (click)="toggleDropdown()" (mouseenter)="onMouseEnterProfile()" (mouseleave)="onMouseLeaveProfile()">
       <img src="assets/user-placeholder.jpg" alt="User Photo" class="user-photo">
       <span class="user-name">{{ userName }}</span>
       <i class="material-icons dropdown-arrow">{{ isDropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</i>
     </div>
-    <div class="dropdown-menu" [class.open]="isDropdownOpen">
+    <div #dropdownMenu class="dropdown-menu" [class.open]="isDropdownOpen">
+      <div class="dropdown-profile-header">
+        <div class="profile-photo-wrapper">
+          <img src="assets/user-placeholder.jpg" alt="User Photo" class="large-user-photo">
+        </div>
+        <span class="large-user-name">{{ userName }}</span>
+      </div>
+      <a class="dropdown-item" (click)="editProfile()">
+        <i class="material-icons">settings</i>
+        <span>Edit Profile</span>
+      </a>
+      <a class="dropdown-item" (click)="logout()">
+        <i class="material-icons">logout</i>
+        <span>Logout</span>
+      </a>
     </div>
   </div>
 </header>
@@ -19,7 +33,7 @@
     <main class="main-content">
 
       <!-- Account Summary -->
-      <section class="dashboard-card account-summary-section">
+      <section #card class="dashboard-card account-summary-section" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <h3>Account Summary</h3>
         <div class="account-cards">
           <div *ngFor="let account of accounts" class="account-card">
@@ -34,31 +48,14 @@
       </section>
 
       <!-- Income vs. Expense Trend -->
-      <section class="dashboard-card">
+      <section #card class="dashboard-card" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <h3>Cash Flow Trend</h3>
         <div class="chart-container large">
           <canvas id="income-expense-chart"></canvas>
         </div>
       </section>
 
-      <!-- Recent Transactions -->
-      <section class="dashboard-card recent-transactions-section">
-        <h3>Recent Transactions</h3>
-        <ul class="transaction-list">
-          <li *ngFor="let transaction of transactions">
-            <div class="transaction-details">
-              <i class="material-icons category-icon">{{ getCategoryIcon(transaction.category) }}</i>
-              <div>
-                <span class="transaction-description">{{ transaction.description }}</span>
-                <span class="transaction-date">{{ transaction.date | date: 'mediumDate' }}</span>
-              </div>
-            </div>
-            <span class="transaction-amount" [ngStyle]="{'color': getAmountColor(transaction.amount)}">
-              {{ transaction.amount | currency }}
-            </span>
-          </li>
-        </ul>
-      </section>
+      
 
     </main>
 
@@ -66,7 +63,7 @@
     <aside class="right-sidebar">
 
       <!-- Notifications -->
-      <section class="notifications-section">
+      <section #card class="notifications-section" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <div *ngFor="let notification of notifications" class="notification-card" [ngClass]="'notification-' + notification.type">
           <p>{{ notification.message }}</p>
           <button (click)="dismissNotification(notification.id)" class="dismiss-button">&times;</button>
@@ -74,7 +71,7 @@
       </section>
 
       <!-- Spending Summary Chart -->
-      <section class="dashboard-card">
+      <section #card class="dashboard-card" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <h3>Spending Summary</h3>
         <div class="chart-container">
           <canvas id="spending-chart"></canvas>
@@ -82,7 +79,7 @@
       </section>
 
       <!-- Financial Goals -->
-      <section class="dashboard-card" *ngIf="financialGoals.length > 0">
+      <section #card class="dashboard-card" *ngIf="financialGoals.length > 0" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <h3>Financial Goals</h3>
         <div *ngFor="let goal of financialGoals" class="goal-tracker">
           <div class="goal-header">
@@ -90,24 +87,44 @@
             <span>{{ goal.currentAmount | currency }} / {{ goal.targetAmount | currency }}</span>
           </div>
           <div class="progress-bar-container">
-            <div class="progress-bar" [style.width.%]="goal.progress"></div>
+            <div class="progress-bar goal-progress-bar" [style.width.%]="goal.progress"></div>
           </div>
         </div>
       </section>
 
       <!-- Upcoming Bills -->
-      <section class="dashboard-card">
+      <section #card class="dashboard-card" (mousemove)="onMouseMove($event, card)" (mouseleave)="onMouseLeave(card)">
         <h3>Upcoming Bills</h3>
         <ul class="bill-list">
-          <li *ngFor="let bill of upcomingBills">
+          <li *ngFor="let bill of upcomingBills" class="bill-item" (mouseenter)="onMouseEnterBill($event, bill)" (mouseleave)="onMouseLeaveBill($event)">
             <span>{{ bill.name }}</span>
             <span class="bill-due-date">{{ bill.dueDate }}</span>
             <span class="bill-amount">{{ bill.amount | currency }}</span>
+            <i class="material-icons bill-reminder-icon">notifications_active</i>
           </li>
         </ul>
       </section>
 
     </aside>
 
+  </div>
+</div>
+
+<app-app-dock></app-app-dock>
+
+<!-- Floating Action Button (FAB) -->
+<div class="fab-container">
+  <button class="fab-button" (click)="toggleFabMenu()">
+    <i class="material-icons">add</i>
+  </button>
+  <div class="fab-menu" [class.open]="isFabMenuOpen">
+    <button class="fab-menu-item" (click)="addTransaction()">
+      <i class="material-icons">receipt_long</i>
+      <span>Add Transaction</span>
+    </button>
+    <button class="fab-menu-item" (click)="addGoal()">
+      <i class="material-icons">track_changes</i>
+      <span>Add Goal</span>
+    </button>
   </div>
 </div>
